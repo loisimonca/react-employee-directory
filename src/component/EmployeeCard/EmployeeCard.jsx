@@ -47,16 +47,36 @@ class Employee extends Component {
             <img src={this.state.imageUrl} alt="dog" style={{ height: 400 }} />
           </div>
         </div>
-        <div className="row">
-          <div className="col d-flex justify-content-around">
-            <button className="btn btn-danger" onClick={this.handleThumbsDown}>
-              Thumbs Down
-            </button>
-            <button className="btn btn-info" onClick={this.handleThumbsUp}>
-              Thumbs Up
-            </button>
-          </div>
-        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
