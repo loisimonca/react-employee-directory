@@ -1,12 +1,13 @@
-import { HashRouter as Router, Route } from "react-router-dom";
-import Employee from "./component/EmployeeCard/EmployeeCard";
+import React from "react";
+import EmployeeCard from "./component/EmployeeCard/EmployeeCard";
+import Header from "./component/Header";
 
 function App() {
   return (
-    <Router basename="/">
-      <Route exact path="/" component={Employee} />
-      <Route exact path="/employee" component={Employee} />
-    </Router>
+    <>
+      <Header />
+      <EmployeeCard />
+    </>
   );
 }
 

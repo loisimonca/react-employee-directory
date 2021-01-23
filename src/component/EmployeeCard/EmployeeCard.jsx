@@ -1,56 +1,47 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class Employee extends Component {
+class EmployeeCard extends Component {
   state = {
-    imageUrl: "",
+    first: "",
+    last: "",
+    phone: "",
+    email: "",
+    image: "",
   };
 
   componentDidMount() {
-    this.getNewDog();
+    this.getEmployee();
+    // console.log(this.state);
   }
 
-  getNewDog = () => {
+  getEmployee = () => {
     axios
-      .get("https://dog.ceo/api/breeds/image/random")
+      .get("https://randomuser.me/api/?results=10")
       .then((response) => {
         console.log(response.data);
         this.setState({
-          imageUrl: response.data.message,
+          first: response.data.results[0].name.first,
+          last: response.data.results[0].name.last,
+          phone: response.data.results[0].phone,
+          email: response.data.results[0].email,
+          image: response.data.results[0].picture.thumbnail,
         });
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  handleThumbsDown = () => {
-    this.getNewDog();
-  };
-  handleThumbsUp = () => {
-    const randomNumber = Math.floor(Math.random() * 5);
-    const yourLuckyNumber = 3;
-    if (randomNumber === yourLuckyNumber) {
-      alert("The dog likes you too!");
-    }
-    this.getNewDog();
-  };
+
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <h1 className="text-center">Welcome to Pupster!</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col d-flex justify-content-center">
-            <img src={this.state.imageUrl} alt="dog" style={{ height: 400 }} />
-          </div>
-        </div>
-        <table class="table">
+      <div className="container" style={{ marginTop: 100 }}>
+        <div className="row"></div>
+        <table className="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
               <th scope="col">First</th>
               <th scope="col">Last</th>
               <th scope="col">Phone Number</th>
@@ -59,22 +50,26 @@ class Employee extends Component {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <th scope="row"></th>
+              <td>
+                <img
+                  src={this.state.image}
+                  style={{ height: 80 }}
+                  alt="employee"
+                ></img>
+              </td>
+
+              <td>{this.state.first}</td>
+              <td>{this.state.last}</td>
+              <td>{this.state.phone}</td>
+              <td>{this.state.email}</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
+            {/* <tr>
+              <th scope="row"></th>
               <td>Jacob</td>
               <td>Thornton</td>
               <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>
@@ -82,4 +77,4 @@ class Employee extends Component {
   }
 }
 
-export default Employee;
+export default EmployeeCard;
