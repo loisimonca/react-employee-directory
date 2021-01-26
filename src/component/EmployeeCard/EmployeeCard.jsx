@@ -1,80 +1,60 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-class EmployeeCard extends Component {
-  state = {
+const EmployeeCard = () => {
+  const [employees, setEmployee] = useState({
     first: "",
     last: "",
     phone: "",
     email: "",
-    image: "",
-  };
+  });
 
-  componentDidMount() {
-    this.getEmployee();
-    // console.log(this.state);
-  }
-
-  getEmployee = () => {
+  useEffect(() => {
     axios
-      .get("https://randomuser.me/api/?results=10")
+      .get("https://randomuser.me/api/")
       .then((response) => {
-        console.log(response.data);
-        this.setState({
-          first: response.data.results[0].name.first,
-          last: response.data.results[0].name.last,
-          phone: response.data.results[0].phone,
-          email: response.data.results[0].email,
-          image: response.data.results[0].picture.thumbnail,
-        });
+        // console.log(response.data.results);
+        setEmployee([response.data.results]);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  });
 
-  render() {
-    return (
-      <div className="container" style={{ marginTop: 100 }}>
-        <div className="row"></div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Phone Number</th>
-              <th scope="col">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row"></th>
-              <td>
-                <img
-                  src={this.state.image}
-                  style={{ height: 80 }}
-                  alt="employee"
-                ></img>
-              </td>
-
-              <td>{this.state.first}</td>
-              <td>{this.state.last}</td>
-              <td>{this.state.phone}</td>
-              <td>{this.state.email}</td>
-            </tr>
-            {/* <tr>
-              <th scope="row"></th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr> */}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="container" style={{ marginTop: 100 }}>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 export default EmployeeCard;
