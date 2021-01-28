@@ -3,6 +3,7 @@ import axios from "axios";
 
 const EmployeeCard = () => {
   const [users, setUsers] = useState([]);
+  const [usersToDisplay, setUsersToDisplay] = useState([]);
 
   useEffect(() => {
     axios
@@ -10,26 +11,29 @@ const EmployeeCard = () => {
       .then((response) => {
         console.log(response.data.results);
         setUsers(response.data.results);
+        setUsersToDisplay(response.data.results);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  // const sortByName = () => {
-  //   const sortedUser = users.sort((a, b) => {
-  //     const aValue = a.name.first;
-  //     const bValue = b.name.first;
-  //     if (aValue < bValue) {
-  //       return -1;
-  //     }
-  //     if (aValue > bValue) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  //   console.log(sortedUser);
-  // };
+  const sortByName = () => {
+    const tempUser = [...users];
+    const sortedUser = tempUser.sort((a, b) => {
+      const aValue = a.name.first;
+      const bValue = b.name.first;
+      if (aValue < bValue) {
+        return -1;
+      }
+      if (aValue > bValue) {
+        return 1;
+      }
+      return 0;
+    });
+
+    setUsersToDisplay(sortedUser);
+  };
   return (
     <div className="container" style={{ marginTop: 100 }}>
       <table className="table table-dark table-striped">
@@ -45,7 +49,7 @@ const EmployeeCard = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
+          {usersToDisplay.map((user, index) => (
             <tr key={index}>
               <th scope="row">{user.id.value}</th>
               <td>
