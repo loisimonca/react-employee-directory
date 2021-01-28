@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+//-----------------------STATE----------------------------//
+
 const EmployeeCard = () => {
   const [users, setUsers] = useState([]);
   const [usersToDisplay, setUsersToDisplay] = useState([]);
   const [sortDirection, setSortDirection] = useState("asc");
   const [searchTerm, setSearchTerm] = useState("");
 
+  //-----------------------API CALL---------------------------//
   useEffect(() => {
     axios
       .get("https://randomuser.me/api/?results=50")
@@ -19,6 +22,7 @@ const EmployeeCard = () => {
         console.log(err);
       });
   }, []);
+  //-----------------------FUNCTION DEFINITION---------------------------//
   const handleSubmit = (e) => {
     e.preventDefault();
     const filteredUsers = users.filter((user) => {
@@ -68,6 +72,8 @@ const EmployeeCard = () => {
     setUsersToDisplay(sortedUser);
   };
 
+  //-----------------------RENDERED SECTION---------------------------//
+
   return (
     <div>
       <div>
@@ -75,7 +81,7 @@ const EmployeeCard = () => {
           <input
             style={{ marginTop: 100 }}
             type="text"
-            name="serachTerm"
+            name="searchTerm"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Enter phone number to filer"
