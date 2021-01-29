@@ -2,20 +2,19 @@
 
 ## Description
 
-The scope of this project was to create an employee directory for an employer to easily view all non-sensitive employee information. Using a random person generator API, the employees I was able to populate the page with a map function. In addition to the list of employees, a user is able to search through them via phone number.
+The scope of this project was to create an employee directory for an employer to easily view all non-sensitive employee information. Using a random person generator API, I was able to populate the page with a map function with employee information. In addition to the list of employees, a user is able to search through them via phone number.
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Usage](#usage)
 - [License](#License)
-- [Contributing](#Contributing)
-- [Test](#test)
 - [Question](#Question)
 
 ## Installation
 
 ## Usage
+
+https://loisimonca.github.io/react-employee-directory/
 
 ## License
 
